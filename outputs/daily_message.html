@@ -1,0 +1,284 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MS Gold Algo — 16 Oct 2026 13:17 IST</title><style>
+:root{--bg:#070a10;--card:#0e141f;--bd:#1b2433;--bd2:#141c28;--tx:#e8eef7;--mu:#93a3ba;--mu2:#6f8098;
+--gold:#f2c14e;--gold2:#ffd479;--grn:#46e08a;--red:#ff6b6b;--blu:#6cc4ff}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
+"Noto Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55;font-size:15.5px}
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;background:
+radial-gradient(900px 420px at 12% -6%,rgba(242,193,78,.15),transparent 62%),
+radial-gradient(760px 420px at 96% 4%,rgba(108,196,255,.09),transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:22px 14px 60px}
+h1,h2,h3{margin:0;line-height:1.25}h1{font-size:clamp(22px,4.6vw,30px);letter-spacing:-.4px}
+.kicker{font-size:11.5px;letter-spacing:2.2px;text-transform:uppercase;color:var(--mu2);font-weight:800}
+.sub{color:var(--mu);font-size:13.5px;margin:6px 0 0}
+.chip{display:inline-block;font-size:12px;padding:4px 10px;border-radius:20px;background:#131a26;border:1px solid var(--bd);color:var(--mu)}
+.chip b{color:var(--tx)}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.chip.good{background:#0f2a1b;border-color:#1d4a2f;color:#7ee2a8}
+.chip.red{background:#2a1414;border-color:#4a1f1f;color:#ff9b95}
+.chip.tgt{background:#2a2210;border-color:#4a3a13;color:var(--gold2)}
+.chip.stp{background:#2a1414;border-color:#4a1f1f;color:#ff9b95}
+.chip.b{background:#0f2233;border-color:#1d4257;color:#8ed2ff}
+/* banner */
+.banner{margin:20px 0 6px;border-radius:16px;padding:18px 18px 16px;border:1px solid var(--bd);
+background:linear-gradient(160deg,#121a27,#0b1017)}
+.banner .lab{font-size:12px;letter-spacing:2px;font-weight:800;color:var(--mu2)}
+.banner .big{font-size:clamp(22px,4.4vw,30px);font-weight:800;letter-spacing:-.5px;margin:4px 0 2px}
+.banner .note{color:var(--mu);font-size:14.5px}
+.banner.go{border-color:#1d4a2f;background:linear-gradient(160deg,#0f2018,#0b1017)}
+.banner.go .big{color:#68e69b}
+.banner.stop{border-color:#4a1f1f;background:linear-gradient(160deg,#1c1112,#0b1017)}
+.banner.stop .big{color:#ff8f87}
+.banner.idle{border-color:#2a3342}
+.banner.idle .big{color:#cfe0f5}
+/* sections */
+section{margin:30px 0 0}
+.stitle{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.stitle h2{font-size:clamp(18px,3.2vw,22px);letter-spacing:-.3px}
+.ssub{color:var(--mu);font-size:13.5px;margin:-4px 0 12px}
+/* trade card */
+.tcard{background:linear-gradient(180deg,#0f1b16,#0a0f18);border:1px solid #1d4a2f;border-radius:16px;
+padding:16px;position:relative;overflow:hidden}
+.tcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#7ee2a8,#1f7a4a)}
+.tcard .tno{font-size:12px;letter-spacing:1.6px;color:#7ee2a8;font-weight:800}
+.tcard h3{font-size:19px;margin:2px 0 2px}
+.tcard .rule{color:var(--mu);font-size:13.5px}
+.trow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 6px}
+.tbox{background:#0b1119;border:1px solid var(--bd2);border-radius:12px;padding:10px 11px}
+.tbox .k{font-size:11px;color:var(--mu2);text-transform:uppercase;letter-spacing:.7px}
+.tbox .v{font-size:17.5px;font-weight:800;font-variant-numeric:tabular-nums}
+.tbox.e .v{color:#cfe0f5}.tbox.t .v{color:var(--gold2)}.tbox.s .v{color:#ff9b95}
+.money{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 4px}
+.mchip{font-size:13.5px;padding:6px 11px;border-radius:10px;background:#0b1119;border:1px solid var(--bd2)}
+.mchip.win{color:#7ee2a8;border-color:#1d4a2f}.mchip.lose{color:#ff9b95;border-color:#4a1f1f}
+.steps{margin:12px 0 2px;padding:0;list-style:none}
+.steps li{display:flex;gap:9px;font-size:14px;padding:4px 0;color:var(--mu)}
+.steps b{color:var(--tx)}
+.steps .n{width:20px;height:20px;flex:0 0 20px;border-radius:6px;background:#182130;display:flex;align-items:center;
+justify-content:center;font-size:11.5px;font-weight:800;color:var(--gold2)}
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin:14px 0 0}
+@media(min-width:720px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 13px}
+.kpi .n{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.kpi .l{font-size:12px;color:var(--mu);margin-top:1px}
+.kpi.g .n{color:var(--grn)}.kpi.y .n{color:var(--gold2)}.kpi.b .n{color:var(--blu)}.kpi.r .n{color:var(--red)}
+/* card w/ ring */
+.box{background:linear-gradient(180deg,#0f1622,#0a0f18);border:1px solid var(--bd);border-radius:16px;padding:14px}
+.box.silv{border-color:#1d3b52;background:linear-gradient(180deg,#0d1a24,#0a0f18)}
+.box h3{font-size:16px}
+.metaline{display:flex;gap:12px;align-items:center;margin-top:12px}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;flex:1}
+.mini .k{display:block;font-size:11px;color:var(--mu2)}.mini .v{font-size:14.5px;font-weight:700;font-variant-numeric:tabular-nums}
+/* table */
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--bd2)}
+th{color:var(--mu2);font-size:11.5px;text-transform:uppercase;letter-spacing:.8px}
+td.n{font-variant-numeric:tabular-nums}
+.pos{color:#7ee2a8}.neg{color:#ff9b95}
+/* health */
+.hgrid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+@media(min-width:680px){.hgrid{grid-template-columns:1fr 1fr}}
+.hrow{display:flex;gap:9px;font-size:13.5px;background:#0b1119;border:1px solid var(--bd2);border-radius:11px;padding:9px 11px}
+.hrow .d{width:9px;height:9px;border-radius:50%;flex:0 0 9px;margin-top:5px}
+.hrow.warn{border-color:#4a3a13}.hrow.red{border-color:#4a1f1f}
+.overall{display:flex;align-items:center;gap:10px;font-size:15px}
+.overall .dot{width:12px;height:12px;border-radius:50%}
+/* footer */
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--bd2);color:var(--mu2);font-size:13px}
+footer .cmd{display:flex;gap:10px;align-items:flex-start;padding:5px 0;color:var(--mu)}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#131a26;border:1px solid var(--bd);
+border-radius:7px;padding:2px 7px;font-size:13px;color:var(--gold2)}
+.note{color:var(--mu);font-size:13.5px}
+details.more{margin-top:12px;border-top:1px dashed #1d4a2f;padding-top:10px}
+details.more summary{cursor:pointer;font-size:13.5px;color:#7ee2a8;font-weight:700;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"▸ "}
+details.more[open] summary::before{content:"▾ "}
+details.more .dbody{margin-top:8px}
+details.more table{margin-top:4px;font-size:13.5px}
+.exitbox{margin-top:11px;background:#0b1119;border:1px solid #1d4a2f;border-radius:11px;padding:10px 12px;
+display:flex;flex-direction:column;gap:3px;font-size:13.3px;color:var(--mu)}
+.exitbox b{color:var(--tx);font-size:13.6px}
+.exitbox span b{color:#cfe0f5}
+.acard{margin:14px 0 0;border-radius:16px;padding:15px 16px;border:1px solid var(--bd);
+background:linear-gradient(180deg,#101722,#0a0f18);position:relative;overflow:hidden}
+.acard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--acc,#f2c14e)}
+.acard.entry{--acc:#46e08a;border-color:#1d4a2f;background:linear-gradient(180deg,#0f1b16,#0a0f18)}
+.acard.skip,.acard.stop{--acc:#ff6b6b;border-color:#4a1f1f;background:linear-gradient(180deg,#1a1113,#0a0f18)}
+.acard.target,.acard.quickbook{--acc:#ffd479;border-color:#4a3a13;background:linear-gradient(180deg,#1a1710,#0a0f18)}
+.acard.prov{--acc:#6cc4ff;border-color:#1d3b52;background:linear-gradient(180deg,#0f1a24,#0a0f18)}
+.acard h3{font-size:17px;letter-spacing:-.2px;margin-bottom:4px}
+.acard ul{margin:8px 0 0;padding-left:18px;color:var(--mu);font-size:14px}
+.acard li{margin:3px 0}
+.acard .lead{color:var(--tx);font-size:14.5px;margin:2px 0 0}
+.srow{display:grid;grid-template-columns:1fr;gap:4px;padding:11px 0;border-bottom:1px dashed #141c28}
+.srow:last-child{border-bottom:0}
+.sname{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.sname b{font-size:15.5px}
+.sname .fam{font-size:11.5px;color:var(--mu2);font-family:ui-monospace,Consolas,monospace}
+.sinfo{color:var(--mu);font-size:13.5px}
+.schips{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px}
+.ok{color:var(--grn)}.warnc{color:#ffce54}.bad{color:#ff9b95}
+</style></head>
+<body><div class="glow"></div><div class="wrap">
+
+  <div class="kicker">MS GOLD ALGO · GOLDPETAL · MCX · backtest se seekha hua</div>
+  <h1>🎯 Aaj ka message — 16 Oct (Fri) · 13:17 IST</h1>
+  <p class="sub">Ye wahi message hai jo pehle text me aata tha — ab poora design ke saath. Kholne ke liye file tap karo.</p>
+  <div class="chips"><span class="chip">signal bar <b>2026-10-15</b></span><span class="chip">RSI14 <b>43</b></span><span class="chip">state <b>DOWN</b></span><span class="chip">open <b>0</b>/4</span></div>
+
+  
+
+  <div class="banner idle">
+    <div class="lab">ABHI KYA KARNA HAI</div>
+    <div class="big">✅ KUCH NAHI — AAJ FREE HO</div>
+    <div class="note">Aaj koi naya trade nahi. Kal subah phir message aayega.</div>
+  </div>
+
+  
+
+  
+        <section>
+          <div class="stitle"><h2>📊 Aapka book — kitna deta hai</h2></div>
+          <p class="ssub">Yahi 11 systems aapke phone par signal bhej rahe hain (backtest 2003→2026).</p>
+          <div class="kpis">
+            <div class="kpi g"><div class="n">75.5%</div><div class="l">win rate</div></div>
+            <div class="kpi y"><div class="n">3.01</div><div class="l">trade / mahina</div></div>
+            <div class="kpi b"><div class="n">₹371</div><div class="l">per mahina (5.8%/mo ROI)</div></div>
+            <div class="kpi r"><div class="n">-6.7R</div><div class="l">max drawdown</div></div>
+          </div>
+          <p class="note" style="margin-top:10px">avg +1.16%/trade · per trade ~₹123 ·
+          72.1% trades 2.5%+ tak jaate hain · average hold 9 din</p>
+          
+        </section>
+  
+    <section>
+      <div class="stitle"><h2>📚 Aapki strategy book — ye 11 setups</h2></div>
+      <p class="ssub">Gold sasta hone ki 11 alag-alag haalat. Jab bhi inme se koi haalat banti hai, phone par signal aata hai —
+        entry/target/stop ke saath. Neeche har setup simple bhasha me.</p>
+      <div class="box">
+            <div class="srow">
+              <div class="sname"><b>Washout Bounce</b><span class="fam">G-r5_deep · tgt 3% / SL 8% / max 4 din</span></div>
+              <div class="sinfo">Gold 5 din me ~6% gir chuka hai — log dar ke bech rahe hain</div>
+              <div class="schips">
+                <span class="chip good">win 90%</span>
+                <span class="chip">avg +1.84%</span>
+                <span class="chip">38 trades · 0.15/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>Deep Dip</b><span class="fam">G-pb20 · tgt 3.5% / SL 6% / max 10 din</span></div>
+              <div class="sinfo">Gold girke RSI 35 se neeche + 21-din minus + price band ke bilkul neeche</div>
+              <div class="schips">
+                <span class="chip good">win 78%</span>
+                <span class="chip">avg +1.74%</span>
+                <span class="chip">63 trades · 0.23/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>Ratio Stretch</b><span class="fam">G-lag_gs80pct · tgt 4% / SL 10% / max 16 din</span></div>
+              <div class="sinfo">Gold/Silver ratio 80th percentile se upar + gold 5 din se neeche</div>
+              <div class="schips">
+                <span class="chip good">win 78%</span>
+                <span class="chip">avg +1.61%</span>
+                <span class="chip">120 trades · 0.46/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>Dollar Kamzor</b><span class="fam">G-dxy_dn · tgt 3% / SL 12% / max 8 din</span></div>
+              <div class="sinfo">Dollar index (DXY) ek din me −0.6% + gold 3 din se neeche</div>
+              <div class="schips">
+                <span class="chip good">win 75%</span>
+                <span class="chip">avg +1.09%</span>
+                <span class="chip">97 trades · 0.36/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>Sasta Gap-Down</b><span class="fam">G-gaprsi · tgt 2.5% / SL 6% / max 8 din</span></div>
+              <div class="sinfo">Gold gap-down me khula + RSI 45 se kam (subah thaka hua)</div>
+              <div class="schips">
+                <span class="chip good">win 75%</span>
+                <span class="chip">avg +0.94%</span>
+                <span class="chip">60 trades · 0.22/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>Darr Ka Spike</b><span class="fam">G-gvz_spike · tgt 3% / SL 12% / max 11 din</span></div>
+              <div class="sinfo">GVZ (gold ka darr index) 70th percentile se upar + gold 1 din me −1%</div>
+              <div class="schips">
+                <span class="chip good">win 74%</span>
+                <span class="chip">avg +0.87%</span>
+                <span class="chip">90 trades · 0.47/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>Sabse Bada Washout</b><span class="fam">G-mm_capit · tgt 4% / SL 10% / max 14 din</span></div>
+              <div class="sinfo">Bade players (MM positioning) 10th percentile se neeche — sabne gold chhod diya</div>
+              <div class="schips">
+                <span class="chip good">win 74%</span>
+                <span class="chip">avg +1.69%</span>
+                <span class="chip">42 trades · 0.23/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>Up-Trend Pullback</b><span class="fam">G-trend_pull_rsi · tgt 2.5% / SL 8% / max 8 din</span></div>
+              <div class="sinfo">Gold UP trend me hai + RSI 50 ke neeche thoda dip aaya</div>
+              <div class="schips">
+                <span class="chip good">win 74%</span>
+                <span class="chip">avg +0.44%</span>
+                <span class="chip">91 trades · 0.36/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>Strong Me Dip</b><span class="fam">G-dip_above_mean · tgt 3% / SL 10% / max 8 din</span></div>
+              <div class="sinfo">1 din me −1.5% gira par price abhi bhi MA20 ke UPAR hai</div>
+              <div class="schips">
+                <span class="chip good">win 74%</span>
+                <span class="chip">avg +0.89%</span>
+                <span class="chip">117 trades · 0.43/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>21-Din Giri</b><span class="fam">G-r21pb · tgt 3% / SL 12% / max 13 din</span></div>
+              <div class="sinfo">21 din me 6%+ giri + band ke bilkul neeche (pctB &lt; 0.15)</div>
+              <div class="schips">
+                <span class="chip good">win 73%</span>
+                <span class="chip">avg +1.38%</span>
+                <span class="chip">37 trades · 0.14/mahina</span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="sname"><b>Gap Down = Sasta</b><span class="fam">G-gapdown_up · tgt 3% / SL 10% / max 12 din</span></div>
+              <div class="sinfo">UP trend me gold gap-down khula (subah sasta mila)</div>
+              <div class="schips">
+                <span class="chip good">win 73%</span>
+                <span class="chip">avg +0.98%</span>
+                <span class="chip">73 trades · 0.30/mahina</span>
+              </div>
+            </div></div>
+    </section>
+  
+  
+  
+        <section>
+          <div class="stitle"><h2>🩺 Sehat — deep check</h2></div>
+          <div class="box">
+            <div class="overall"><span class="dot" style="background:#f2c14e"></span>
+              <b>WARN</b> <span class="note">— WARN — 0 red, 1 warn</span></div>
+            <div class="hgrid"><div class="hrow warn"><span class="d" style="background:#f2c14e"></span><span>⚠️ <b>run_time</b> — 13:17 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha</span></div><div class="hrow"><span class="d" style="background:#46e08a"></span><span>11 systems check hue · signal bar 2026-10-15 · data 2026-10-16</span></div><div class="hrow" style="border-color:#2a3342"><span class="d" style="background:#f2c14e"></span><span>⏱ <b>Run timing</b> — scheduled 08:30 IST tha · actual 13:17 IST (delay +287 min)</span></div></div>
+          </div>
+        </section>
+
+  <footer>
+    
+    <p class="cmd">👉 Order lagne par → <code>Run workflow</code> → cmd box: <code>fill 1 13980</code> (1 = order ka number)</p>
+    <p class="cmd">👉 Bechte waqt → cmd box: <code>close 1 14100</code> · 👉 Order nahi lagaya → <code>skip 1</code></p>
+    <p class="cmd">👉 <b>Quick-book:</b> din-10 tak +2.5% ho jaye to book kar do</p>
+    <p class="cmd">👉 Agla message: kal subah ~8:30 IST · kharcha ₹46/trade ·
+       margin ₹1,352/lot</p>
+    <p class="note" style="margin-top:10px">File: <b>MS_Gold_Algo_message</b> (HTML) — offline khulti hai, internet ki zaroorat nahi.
+       Ye backtest + system ka hisaab hai, future guarantee nahi. 1 lot, 1 mahina test — phir quantity badhao.</p>
+  </footer>
+</div></body></html>
