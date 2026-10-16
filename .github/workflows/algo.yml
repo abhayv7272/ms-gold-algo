@@ -1,0 +1,172 @@
+name: MS Gold Algo — daily signal
+
+on:
+  schedule:
+    # GitHub cron UTC me hota hai. IST = UTC + 5:30
+    - cron: "30 21 * * 0-4"    # 03:00 IST (Mon-Fri) — COMEX bar final hone ke baad, MCX open se pehle
+    - cron: "0 3 * * 1-5"      # 08:30 IST (Mon-Fri) — backup run (agar pehla wala delay/fail ho jaye)
+    - cron: "0 0 * * 1-5"      # 05:30 IST (Mon-Fri) — SAFETY NET: agar pehle dono delay/fail ho gaye
+    - cron: "0 19 * * 1-5"     # 00:30 IST (Tue-Sat) — MCX band hone ke baad: din ka summary + aapki commands
+    # ---- LIVE MONITOR (hourly, MCX hours) — sirf zaroorat par alert bhejta hai (entry zone/target/stop/quick-book/setup ban raha) ----
+    - cron: "30 3 * * 1-5"     # 09:00 IST
+    - cron: "30 4 * * 1-5"     # 10:00 IST
+    - cron: "30 5 * * 1-5"     # 11:00 IST
+    - cron: "30 6 * * 1-5"     # 12:00 IST
+    - cron: "30 7 * * 1-5"     # 13:00 IST
+    - cron: "30 8 * * 1-5"     # 14:00 IST
+    - cron: "30 9 * * 1-5"     # 15:00 IST
+    - cron: "30 10 * * 1-5"    # 16:00 IST
+    - cron: "30 11 * * 1-5"    # 17:00 IST
+    - cron: "30 12 * * 1-5"    # 18:00 IST
+    - cron: "30 13 * * 1-5"    # 19:00 IST
+    - cron: "30 14 * * 1-5"    # 20:00 IST
+    - cron: "30 15 * * 1-5"    # 21:00 IST
+    - cron: "30 16 * * 1-5"    # 22:00 IST
+    - cron: "30 17 * * 1-5"    # 23:00 IST (MCX band hone se pehle)
+    # NOTE: GitHub ka cron 5-30 min late chal sakta hai (kabhi zyada bhi). Isliye 4 runs hain +
+    #       duplicate-guard: same haalat me dobara message NAHI jaata, aur delay message me dikhta hai.
+  workflow_dispatch:            # phone se manually bhi chala sakte ho (Actions tab -> Run workflow)
+    inputs:
+      cmd:                      # optional: "fill 1 13980" / "close 1 14100" / "skip 1" (| se alag karke kai)
+        description: "Command (khaali chhod sakte ho) — jaise: fill 1 13980"
+        required: false
+        default: ""
+      force:                    # optional: true = duplicate guard hatao, message abhi bhejo
+        description: "force (true/false) — true karo to message hamesha bhejega"
+        required: false
+        default: "false"
+      mode:                     # optional: daily (default) | monitor (live alert wala)
+        description: "mode: daily | monitor (monitor = MCX hours ka live alert)"
+        required: false
+        default: "daily"
+
+permissions:
+  contents: write               # state files wapas repo me commit karne ke liye
+
+concurrency:
+  group: ms-algo
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Secrets preflight (kaunsa secret missing hai — value print NAHI hoti)
+        run: |
+          python3 - <<'EOF'
+          import os
+          need = ["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID", "NTFY_TOPIC"]
+          miss = [k for k in need if not os.getenv(k, "").strip()]
+          print("secrets configured:", [k for k in need if k not in miss])
+          print("MISSING:", miss if miss else "none ✅")
+          if len(miss) == 3:
+              print("::error::koi bhi alert channel nahi mila — Settings > Secrets me daalo (SETUP_GUIDE.md dekho)")
+          elif miss:
+              print("::warning::kuch secrets missing hain: " + ", ".join(miss))
+          EOF
+
+      - name: Save state (pehle — taaki message bhejne ke baad bhi state commit ho jaye)
+        if: always()
+        run: |
+          git config user.name "ms-algo-bot"
+          git config user.email "ms-algo-bot@users.noreply.github.com"
+          git add -A data/algo outputs 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "koi change nahi"
+          else
+            git commit -m "state: $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
+
+      - name: Mode decide (schedule vs manual)
+        id: mode
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHED: ${{ github.event.schedule }}
+          MANUAL_MODE: ${{ github.event.inputs.mode }}
+        run: |
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            M="${MANUAL_MODE:-daily}"
+          elif [ -n "$SCHED" ]; then
+            # hourly crons (minute=30, ghante 03-17 UTC) = monitor; baaki 4 crons = daily
+            case "$SCHED" in
+              "30 3 * * 1-5"|"30 4 * * 1-5"|"30 5 * * 1-5"|"30 6 * * 1-5"|"30 7 * * 1-5"|"30 8 * * 1-5"|"30 9 * * 1-5"|"30 10 * * 1-5"|"30 11 * * 1-5"|"30 12 * * 1-5"|"30 13 * * 1-5"|"30 14 * * 1-5"|"30 15 * * 1-5"|"30 16 * * 1-5"|"30 17 * * 1-5") M="monitor" ;;
+              *) M="daily" ;;
+            esac
+          else
+            M="daily"
+          fi
+          [ -z "$M" ] && M="daily"
+          echo "MS_MODE=$M" >> "$GITHUB_ENV"
+          echo "mode = $M (event=$EVENT schedule=$SCHED)"
+
+      - name: Run algo (message bhejo)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          WHATSAPP_PHONE: ${{ secrets.WHATSAPP_PHONE }}
+          WHATSAPP_APIKEY: ${{ secrets.WHATSAPP_APIKEY }}
+          NOTIFY_CHANNEL: ${{ vars.NOTIFY_CHANNEL }}
+          USER_CMD: ${{ github.event.inputs.cmd }}
+          FORCE_SEND: ${{ github.event.inputs.force }}
+          SCHED_CRON: ${{ github.event.schedule }}
+          MS_MODE: ${{ env.MS_MODE }}
+        run: python run_daily.py
+
+      - name: Save state (run ke baad — naye orders / journal / message file)
+        if: always()
+        run: |
+          git config user.name "ms-algo-bot"
+          git config user.email "ms-algo-bot@users.noreply.github.com"
+          git add -A data/algo outputs 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "koi change nahi"
+          else
+            git pull --rebase --autostash >/dev/null 2>&1 || true
+            git commit -m "state(after): $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push || echo "push skip (kuch nahi bheja)"
+          fi
+
+      - name: Upload HTML message (artifact — phone/PC par bhi dekh sakte ho)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ms-gold-message
+          path: |
+            outputs/MS_Gold_Algo_*.html
+            outputs/daily_message.html
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Kuch fail ho gaya? — phone par alert (best effort)
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          MSG="ALGO RUN FAIL — GitHub Actions. Log: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          if [ -n "$TELEGRAM_BOT_TOKEN" ]; then
+            curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+              -d chat_id="${TELEGRAM_CHAT_ID}" -d text="$MSG" >/dev/null || true
+          fi
+          IFS=','
+          for t in $NTFY_TOPIC; do
+            [ -z "$t" ] && continue
+            curl -s -H "Title: MS Gold Algo FAIL" -H "Priority: 5" -H "Tags: rotating_light" -d "$MSG" "https://ntfy.sh/$t" >/dev/null || true
+          done
+          echo "failure alert bheja (best effort)"

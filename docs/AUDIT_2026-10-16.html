@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="hi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>MS Gold Algo — Full Audit</title></head>
+<body style="margin:0;background:#070b14;color:#e8edf7;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif">
+<div style="max-width:820px;margin:0 auto;padding:22px 16px 40px">
+<div style="font:600 11px/1.6 monospace;letter-spacing:.14em;color:#7fd1ff;text-transform:uppercase">MS Gold Algo · Full System Audit</div>
+<h1 style="margin:10px 0 6px;font-size:27px;line-height:1.2">🩺 Poore system ka health check</h1>
+<div style="color:#9fb0c9;font-size:14px">16 Oct 2026 · 06:37 IST · sab kuch chalte hue parakha gaya (local + GitHub + phone)</div>
+
+<div style="margin:18px 0;padding:16px 18px;border-radius:16px;border:1px solid #1e5c3a;
+background:linear-gradient(135deg,#0d2a1c,#0a1a14)">
+<div style="font-size:20px;font-weight:800;color:#5cf0a0">✅ SAB THEEK CHAL RAHA HAI</div>
+<div style="margin-top:8px;color:#cfe7da;font-size:14px;line-height:1.65">
+Automation poori tarah live aur working hai — <b>34/34 deep tests pass</b>, GitHub ke 6/6 runs success,
+message Telegram + dono ntfy par pahunch raha hai, aur saare 6 alert type test kiye gaye.<br>
+<b>Sirf 1 kaam aapka hai:</b> repo ko <b>PRIVATE</b> karna (abhi public hai).
+</div></div>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px">
+<div class="chip"><b>6/6</b> GitHub runs success</div>
+<div class="chip"><b>34/34</b> e2e tests pass</div>
+<div class="chip"><b>19</b> crons live</div>
+<div class="chip"><b>3/3</b> channels ✅</div>
+<div class="chip"><b>0</b> drift vs GitHub</div>
+</div>
+
+<div class="g"><div class="gt">🏠 LOCAL ENGINE</div><div class="r"><div class="rn"><span class="ck">✅</span><b>Saare 7 python files ka syntax</b></div><div class="rs">OK</div><div class="rd">ms_algo · monitor · report_html · run_daily · healthcheck · notify · e2e_verify</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>e2e_verify (deep test)</b></div><div class="rs">34 PASS · 0 FAIL</div><div class="rd">backtest↔live px · yfinance · frame→scan→health · HTML 13 group · timing+dedup</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Engine selftest</b></div><div class="rs">PASS</div><div class="rd">21/21 systems ka trigger published baseline se EXACT match</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Healthcheck</b></div><div class="rs">10 OK · 0 RED</div><div class="rd">1 WARN sirf local shell me (secrets env nahi the — GitHub par hain)</div></div></div><div class="g"><div class="gt">☁️ GITHUB (asli jagah jahan sach me chalta hai)</div><div class="r"><div class="rn"><span class="ck">✅</span><b>Workflow</b></div><div class="rs">ACTIVE</div><div class="rd">19 crons = 4 daily + 15 hourly monitor · 10 steps · inputs: cmd/force/mode</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Runs</b></div><div class="rs">6/6 SUCCESS</div><div class="rd">#1 (force) → #6 (latest commit) — sab pass</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Secrets</b></div><div class="rs">3 / 3</div><div class="rd">TELEGRAM_BOT_TOKEN · TELEGRAM_CHAT_ID · NTFY_TOPIC</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>State auto-commit</b></div><div class="rs">CHAL RAHA</div><div class="rd">workflow khud commit karta hai: 4bd59282 @ 01:05 UTC</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Local vs GitHub drift</b></div><div class="rs">0 file</div><div class="rd">11/11 important files ka hash bilkul same</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Fresh clone test</b></div><div class="rs">PASS</div><div class="rd">GitHub se naya clone → e2e 34 PASS + daily/monitor dono chal gaye</div></div></div><div class="g"><div class="gt">📲 MESSAGE DELIVERY (live test kiya)</div><div class="r"><div class="rn"><span class="ck">✅</span><b>Telegram</b></div><div class="rs">✅</div><div class="rd">@msgold_abhay_bot — HTML file attach ke saath</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>ntfy topic 1</b></div><div class="rs">✅ ✅</div><div class="rd">text + HTML attachment dono</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>ntfy topic 2</b></div><div class="rs">✅ ✅</div><div class="rd">text + HTML attachment dono</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Audit test</b></div><div class="rs">06:34 IST</div><div class="rd">asli production path se bheja — sab channels par pahuncha</div></div></div><div class="g"><div class="gt">🚨 HOURLY MONITOR — 6 alert type (sab test kiye)</div><div class="r"><div class="rn"><span class="ck">✅</span><b>⏰ ENTRY ZONE</b></div><div class="rs">PASS</div><div class="rd">live ₹13,944 vs ref ₹14,082 (−0.98%) → order lagao alert aaya</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>🚫 HARD SKIP</b></div><div class="rs">PASS</div><div class="rd">price ref se +11% upar → 'mat lagao' alert aaya</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>🎯 TARGET HIT</b></div><div class="rs">PASS</div><div class="rd">target chhua → 'book karo' + ₹651 faayda</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>🛑 STOP HIT</b></div><div class="rs">PASS</div><div class="rd">stop toota → 'bahar nikal jao' alert aaya</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>💚 QUICK-BOOK</b></div><div class="rs">PASS</div><div class="rd">din-12 & +3.01% → book karo (+₹407)</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>⏳ SETUP BAN RAHA</b></div><div class="rs">PASS</div><div class="rd">adhoora trigger → 'order MAT lagao' warning</div></div></div><div class="g"><div class="gt">🛡️ SAFETY (jo galat nahi hone dena)</div><div class="r"><div class="rn"><span class="ck">✅</span><b>RED ZONE</b></div><div class="rs">PASS</div><div class="rd">sehat RED ho to koi live alert nahi (test kiya = 0 alert)</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Dedup — daily</b></div><div class="rs">PASS</div><div class="rd">same haalat me dobara message nahi (production run #2 proof)</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Dedup — monitor</b></div><div class="rs">PASS</div><div class="rd">run #4/#5/#6 chup rahe jab kuch nahi tha</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Delivery fail → retry</b></div><div class="rs">PASS</div><div class="rd">bhej fail ho to agle ghante dobara koshish (alert jal nahi jata)</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Price freshness</b></div><div class="rs">PASS</div><div class="rd">data 120 min se purana = alert band (galat rate par alert nahi)</div></div><div class="r"><div class="rn"><span class="ck">✅</span><b>Cron routing</b></div><div class="rs">PASS</div><div class="rd">4 daily crons daily hi rahenge · sirf 15 hourly crons monitor mode me</div></div></div>
+
+<div class="g" style="border-color:#5c4a1e;background:linear-gradient(135deg,#241d0d,#15110a)">
+<div class="gt" style="color:#f2c14e">⚠️ 2 BAATEIN DHYAN ME</div>
+<div class="r"><div class="rn"><span class="ck">🔓</span><b>Repo abhi bhi PUBLIC hai</b></div>
+<div class="rs" style="color:#f2c14e">AAPKA KAAM</div>
+<div class="rd">GitHub → Settings → Danger Zone → Change visibility → <b>Make private</b>.
+(Signals abhi sabko dikh sakte hain. Mere token me administration permission nahi thi.)</div></div>
+<div class="r"><div class="rn"><span class="ck">🪪</span><b>Dhan token 17-Oct 01:47 IST par expire</b></div>
+<div class="rs" style="color:#9fb0c9">INFO</div>
+<div class="rd">Automation par koi asar NAHI (algo Dhan API use nahi karta — order aap app me lagate ho).
+Sirf agar kal koi Dhan account check karana ho, to naya token bana lena.</div></div>
+<div class="r"><div class="rn"><span class="ck">⏱</span><b>GitHub cron 5–15 min late chal sakta hai</b></div>
+<div class="rs" style="color:#9fb0c9">INFO</div>
+<div class="rd">Ye GitHub ki majboori hai — alert "us ghante ke aas-paas" aayega.
+Har report me "⏱ Run timing" row me scheduled vs actual saaf likha hota hai.</div></div>
+</div>
+
+<div class="g">
+<div class="gt">🧾 AAJ KA LIVE SACH (jo engine abhi keh raha hai)</div>
+<div class="r"><div class="rn"><span class="ck">📊</span><b>Signal bar</b></div><div class="rs">2026-10-15</div>
+<div class="rd">Gold ₹13,952/g · state DOWN · RSI 40.3 · DXY 102.1 (−0.42%) · G/S 60th pct · <b>aaj koi naya entry nahi</b></div></div>
+<div class="r"><div class="rn"><span class="ck">💼</span><b>Ledger</b></div><div class="rs">0 order · 0 open</div>
+<div class="rd">Kuch pending nahi — monitor bhi isi liye chup hai (spam nahi karta)</div></div>
+<div class="r"><div class="rn"><span class="ck">💰</span><b>Cash / margin</b></div><div class="rs">₹6,380 / ₹5,408</div>
+<div class="rd">4 slots ka margin cover hai (buffer ₹972) · 1 lot = 1 g · cost ₹46/trade · margin ₹1,352/lot</div></div>
+<div class="r"><div class="rn"><span class="ck">📅</span><b>Contract</b></div><div class="rs">45 din baaki</div>
+<div class="rd">GOLDPETAL NOV FUT (sec 574841, expiry 2026-11-30)</div></div>
+</div>
+
+<div style="margin-top:18px;color:#8b9bb4;font-size:12.5px;line-height:1.7">
+Test protocol jo use hua: local engine test → live delivery test → GitHub API audit → fresh clone test →
+fake order/position se saare 6 alert → RED ZONE safety → dedup + retry.<br>
+Verification dobara chahiye to: <span style="font-family:monospace;color:#7fd1ff">python3 e2e_verify.py</span> (34 checks).</div>
+</div>
+
+<style>
+.g{margin:14px 0;padding:12px 14px 14px;border-radius:16px;border:1px solid #1c2739;background:linear-gradient(180deg,#0d1424,#0a0f1b)}
+.gt{font:700 12px/1.4 monospace;letter-spacing:.1em;color:#7fd1ff;text-transform:uppercase;margin:2px 0 10px}
+.r{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 10px;border-radius:11px;background:#0a1220;border:1px solid #16202f;margin:7px 0}
+.rn{font-size:14px;color:#e8edf7;grid-column:1/2}.ck{margin-right:6px}
+.rs{grid-column:2/3;text-align:right;font:700 12px/1.5 monospace;color:#5cf0a0;white-space:nowrap}
+.rd{grid-column:1/3;font-size:12.5px;color:#93a5bd;line-height:1.6;margin-top:3px}
+.chip{padding:8px 13px;border-radius:999px;background:#0d1a2b;border:1px solid #1d3550;color:#cfe0f5;font-size:12.5px}
+.chip b{color:#7fd1ff}
+</style></body></html>

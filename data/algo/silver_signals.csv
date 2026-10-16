@@ -1,0 +1,2 @@
+signal_date,system,family,ref_px,target_px,stop_px,tgt_pct,stop_pct,max_hold,risk_inr,note
+2026-10-15,S-gs_ext_dip,gs_ext_dip,191517.0,197262.0,172365.0,3.0,10.0,20,19152.0,signal-only

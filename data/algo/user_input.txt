@@ -1,0 +1,4 @@
+# yahan likho (ek line me ek command) — ye file roz khaali kar di jaati hai
+# fill 1 13980      <- order laga, ₹13,980 par mila
+# close 1 14100     <- bech diya ₹14,100 par
+# skip 1            <- order chhod diya (jaise 1%+ gap up)
