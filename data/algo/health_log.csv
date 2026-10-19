@@ -28,3 +28,4 @@ ts,overall,n_ok,reds,warns
 2026-10-19 22:06,WARN,10,,run_time: 22:06 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-10-19 22:34,WARN,10,,run_time: 22:34 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-10-19 23:09,WARN,10,,run_time: 23:09 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
+2026-10-20 00:16,WARN,10,,clock: signal bar 2026-10-19 provisional (COMEX band nahi hua; 02:45 IST ke baad final)
