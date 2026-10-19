@@ -55,3 +55,6 @@ health=OK state=DOWN rsi=42.8 sig_bar=2026-10-18 new=0 open=0 applied=[]
 
 ===== 2026-10-19 07:59 IST =====
 health=OK state=DOWN rsi=40.4 sig_bar=2026-10-18 new=0 open=0 applied=[]
+
+===== 2026-10-19 13:51 IST =====
+health=WARN state=DOWN rsi=42.3 sig_bar=2026-10-16 new=0 open=0 applied=[]
