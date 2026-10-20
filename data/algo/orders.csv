@@ -1,1 +1,2 @@
 order_id,created_on,signal_date,entry_day,system,family,side,rule,lots,contract,contract_sec_id,contract_expiry,ref_px,skip_above,gap_lo_px,gap_hi_px,gap_hard_px,target_px,stop_px,tgt_pct,stop_pct,max_hold,status,note
+1,2026-10-21,2026-10-20,2026-10-21,G-r21pb,r21pb,BUY,"21d<-6 & pctB<0.15 — win 73%, avg +1.38% per trade",1,GOLDPETAL NOV FUT,574841,2026-11-30,13762.7,13900.4,13831.6,13900.4,14106.8,14175.6,12111.2,3.0,12.0,13,PENDING,quick-book ON: din-10 par +2.5% ho to book
