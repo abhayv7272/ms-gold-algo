@@ -147,3 +147,4 @@ ts,overall,n_ok,reds,warns
 2026-10-28 01:03,RED,9,ledger: duplicate order_id,clock: signal bar 2026-10-27 provisional (COMEX band nahi hua; 02:45 IST ke baad final)
 2026-10-28 01:40,RED,9,ledger: duplicate order_id,clock: signal bar 2026-10-27 provisional (COMEX band nahi hua; 02:45 IST ke baad final)
 2026-10-28 02:22,RED,9,ledger: duplicate order_id,clock: signal bar 2026-10-27 provisional (COMEX band nahi hua; 02:45 IST ke baad final)
+2026-10-28 02:57,RED,10,ledger: duplicate order_id,
