@@ -862,3 +862,6 @@ health=RED state=DOWN rsi=43.4 sig_bar=2026-11-05 new=0 open=0 applied=[]
 
 ===== 2026-11-06 18:38 IST =====
 health=RED state=DOWN rsi=43.1 sig_bar=2026-11-05 new=0 open=0 applied=[]
+
+===== 2026-11-06 20:00 IST =====
+health=RED state=DOWN rsi=41.4 sig_bar=2026-11-05 new=0 open=0 applied=[]

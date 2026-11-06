@@ -287,3 +287,4 @@ ts,overall,n_ok,reds,warns
 2026-11-06 16:52,RED,8,ledger: duplicate order_id,contract: GOLDPETAL NOV FUT 24 din baaki — agla contract rollover ka plan | run_time: 16:52 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-06 17:47,RED,8,ledger: duplicate order_id,contract: GOLDPETAL NOV FUT 24 din baaki — agla contract rollover ka plan | run_time: 17:47 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-06 18:38,RED,8,ledger: duplicate order_id,contract: GOLDPETAL NOV FUT 24 din baaki — agla contract rollover ka plan | run_time: 18:38 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
+2026-11-06 20:00,RED,8,ledger: duplicate order_id,contract: GOLDPETAL NOV FUT 24 din baaki — agla contract rollover ka plan | run_time: 20:00 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
