@@ -318,3 +318,4 @@ ts,overall,n_ok,reds,warns
 2026-11-10 05:19,RED,10,ledger: duplicate order_id,
 2026-11-10 05:52,RED,10,ledger: duplicate order_id,
 2026-11-10 06:19,RED,10,ledger: duplicate order_id,
+2026-11-10 07:24,RED,10,ledger: duplicate order_id,
