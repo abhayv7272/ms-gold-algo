@@ -345,3 +345,4 @@ ts,overall,n_ok,reds,warns
 2026-11-11 17:29,RED,9,ledger: duplicate order_id,run_time: 17:29 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-11 18:22,RED,9,ledger: duplicate order_id,run_time: 18:22 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-11 20:09,RED,9,ledger: duplicate order_id,run_time: 20:09 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
+2026-11-11 21:00,RED,9,ledger: duplicate order_id,run_time: 21:00 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
