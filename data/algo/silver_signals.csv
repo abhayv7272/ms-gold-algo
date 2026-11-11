@@ -6,3 +6,4 @@ signal_date,system,family,ref_px,target_px,stop_px,tgt_pct,stop_pct,max_hold,ris
 2026-10-30,S-rsi30r5,rsi30r5,169808.0,174902.0,156224.0,3.0,8.0,20,13585.0,signal-only
 2026-11-03,S-gs_ext_dip,gs_ext_dip,162604.0,167482.0,146344.0,3.0,10.0,20,16260.0,signal-only
 2026-11-03,S-gapdn,gapdn,165197.0,171805.0,148678.0,4.0,10.0,20,16520.0,signal-only
+2026-11-11,S-gs_ext_dip,gs_ext_dip,171324.0,176464.0,154192.0,3.0,10.0,20,17132.0,signal-only
