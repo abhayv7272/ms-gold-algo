@@ -418,3 +418,4 @@ ts,overall,n_ok,reds,warns
 2026-11-17 16:54,RED,9,ledger: duplicate order_id,run_time: 16:54 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-17 17:48,RED,9,ledger: duplicate order_id,run_time: 17:48 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-17 19:10,RED,8,ledger: duplicate order_id,channels: 2 channel configured · telegram check fail (<urlopen error [Errno 104] Connection re) | run_time: 19:10 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
+2026-11-17 20:16,RED,9,ledger: duplicate order_id,run_time: 20:16 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
