@@ -438,3 +438,4 @@ ts,overall,n_ok,reds,warns
 2026-11-18 17:36,RED,8,ledger: duplicate order_id,channels: 2 channel configured · telegram check fail (<urlopen error [Errno 104] Connection re) | run_time: 17:36 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-18 18:45,RED,9,ledger: duplicate order_id,run_time: 18:45 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-18 19:56,RED,8,ledger: duplicate order_id,channels: 2 channel configured · telegram check fail (HTTP Error 502: Bad Gateway) | run_time: 19:56 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
+2026-11-18 21:24,RED,9,ledger: duplicate order_id,run_time: 21:24 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
