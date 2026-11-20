@@ -476,3 +476,4 @@ ts,overall,n_ok,reds,warns
 2026-11-20 17:31,RED,9,ledger: duplicate order_id,run_time: 17:31 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-20 18:49,RED,9,ledger: duplicate order_id,run_time: 18:49 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
 2026-11-20 19:45,RED,8,ledger: duplicate order_id,channels: 2 channel configured · telegram check fail (The read operation timed out) | run_time: 19:45 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
+2026-11-20 21:11,RED,9,ledger: duplicate order_id,run_time: 21:11 IST — MCX khula/band ho sakta hai; order aaj lagane ka aakhri mauka tha
