@@ -500,3 +500,4 @@ ts,overall,n_ok,reds,warns
 2026-11-24 01:59,RED,9,ledger: duplicate order_id,clock: signal bar 2026-11-23 provisional (COMEX band nahi hua; 02:45 IST ke baad final)
 2026-11-24 03:07,RED,10,ledger: duplicate order_id,
 2026-11-24 03:38,RED,10,ledger: duplicate order_id,
+2026-11-24 04:20,RED,10,ledger: duplicate order_id,
