@@ -562,3 +562,4 @@ ts,overall,n_ok,reds,warns
 2026-11-27 04:01,RED,10,ledger: duplicate order_id,
 2026-11-27 04:42,RED,10,ledger: duplicate order_id,
 2026-11-27 05:25,RED,10,ledger: duplicate order_id,
+2026-11-27 06:14,RED,10,ledger: duplicate order_id,
